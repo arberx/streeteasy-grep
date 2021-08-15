@@ -1,0 +1,107 @@
+{
+    "https://streeteasy.com/building/1558-2-avenue-new_york/3f": {
+        "Address": "1558 Second Avenue #3F",
+        "Price": "$2,000"
+    },
+    "https://streeteasy.com/building/504-east-88-street-new_york/2d": {
+        "Address": "504 East 88th Street #2D",
+        "Price": "$2,700"
+    },
+    "https://streeteasy.com/building/170-east-83-street-new_york/7r": {
+        "Address": "170 East 83rd Street #7R",
+        "Price": "$2,800"
+    },
+    "https://streeteasy.com/building/435-east-86-street-new_york/5b": {
+        "Address": "435 East 86th Street #5B",
+        "Price": "$3,000"
+    },
+    "https://streeteasy.com/building/242-east-80-street-new_york/5a": {
+        "Address": "242 East 80th Street #5A",
+        "Price": "$2,347"
+    },
+    "https://streeteasy.com/building/city-and-suburban-homes-company-av-511-east-78-street-new_york/6a": {
+        "Address": "511 East 78th Street #6A",
+        "Price": "$2,550"
+    },
+    "https://streeteasy.com/building/217-east-88-street-new_york/16": {
+        "Address": "217 East 88th Street #16",
+        "Price": "$1,940"
+    },
+    "https://streeteasy.com/building/226-east-89-street-new_york/03": {
+        "Address": "226 East 89th Street #3",
+        "Price": "$2,550"
+    },
+    "https://streeteasy.com/building/508-east-79-street-manhattan/4f": {
+        "Address": "508 East 79th Street #4F",
+        "Price": "$2,175"
+    },
+    "https://streeteasy.com/building/326-east-66-street-new_york/k4": {
+        "Address": "324 East 66th Street #K4",
+        "Price": "$2,225"
+    },
+    "https://streeteasy.com/building/172-east-85-street-new_york/14": {
+        "Address": "172 East 85th Street #14",
+        "Price": "$1,750"
+    },
+    "https://streeteasy.com/building/328-east-66-street-new_york/g7": {
+        "Address": "328 East 66th Street #G7",
+        "Price": "$2,100"
+    },
+    "https://streeteasy.com/building/245-east-83-street-new_york/s1": {
+        "Address": "245 East 83rd Street #S1",
+        "Price": "$1,900"
+    },
+    "https://streeteasy.com/building/205-east-94-street-new_york/3fw": {
+        "Address": "205 East 94th Street #3FW",
+        "Price": "$2,200"
+    },
+    "https://streeteasy.com/building/446-east-78-street-new_york/4": {
+        "Address": "446 East 78th Street #4",
+        "Price": "$1,850"
+    },
+    "https://streeteasy.com/building/350-east-65-street-new_york/2": {
+        "Address": "350 East 65th Street #2",
+        "Price": "$2,000"
+    },
+    "https://streeteasy.com/building/1007-lexington-avenue-new_york/1f": {
+        "Address": "1007 Lexington Avenue #1F",
+        "Price": "$2,300"
+    },
+    "https://streeteasy.com/building/1610-york-avenue-new_york/3": {
+        "Address": "501 East 85th Street #3",
+        "Price": "$2,195"
+    },
+    "https://streeteasy.com/building/320-east-93-street-new_york/1a": {
+        "Address": "320 East 93rd Street #1A",
+        "Price": "$2,475"
+    },
+    "https://streeteasy.com/building/east-winds-condominium/18h": {
+        "Address": "345 East 80th Street #18H",
+        "Price": "$3,000"
+    },
+    "https://streeteasy.com/building/236-east-80-street-new_york/22": {
+        "Address": "236 East 80th Street #22",
+        "Price": "$2,375"
+    },
+    "https://streeteasy.com/building/218-east-89-street-new_york/10": {
+        "Address": "218 East 89th Street #10",
+        "Price": "$2,225"
+    },
+    "https://streeteasy.com/building/338-east-61-street-new_york/8": {
+        "Address": "338 East 61st Street #8",
+        "Price": "$2,599"
+    },
+    "https://streeteasy.com/building/314-east-70-street-new_york/5a": {
+        "Address": "314 East 70th Street #5A",
+        "Price": "$1,800"
+    },
+    "https://streeteasy.com/building/1378-lexington-avenue-new_york/2": {
+        "Address": "128 East 91st Street #2",
+        "Price": "$2,450"
+    },
+    "https://streeteasy.com/building/420-east-79-street-new_york/12g": {
+        "Address": "420 East 79th Street #12G",
+        "Price": "$2,950"
+    },
+    "query": "ues/price:0-3000|beds:1|no_fee"
+}
