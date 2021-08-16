@@ -10,6 +10,11 @@ import os
 
 import selenium
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+
 from streeteasy_grep import config as cfg
 
 
@@ -39,7 +44,7 @@ def sanitize_link(link):
     return link
 
 
-def check_diff(object, file):
+def check_and_print_difference(object, file):
     """ Print diff if file already exists. """
     if not os.path.exists(file):
         return
@@ -54,7 +59,7 @@ def check_diff(object, file):
 def write_to_json(object, file, check_diff=False):
     """ Write json object to a file, if check_diff is True, will return diff of previous file if it exists. """
     if check_diff:
-        check_diff(object, file)
+        check_and_print_difference(object, file)
 
     with open(file, "w+") as f:
         json.dump(object, f)
@@ -97,6 +102,13 @@ def parse_args(args):
         action="store_true",
         help="Check diff between queries if the same query file has been created before",
     )
+    parser.add_argument(
+        "--num-pages",
+        "-np",
+        default=-1,
+        type=int,
+        help="Number of pages to iterate through.",
+    )
 
     return parser.parse_args(args)
 
@@ -115,12 +127,19 @@ def main(args=None):
         # Iterate through all pages of results, and exception will be thrown to end iteration.
         page = 1
         results_dictionary = {}
-        while True:
+        while page == args.num_pages:
             print(f"Parsing url: [{url}?page={page}]")
+            delay = 3
+            time.sleep(0.5)
             driver.get(f"{url}/?page={page}")
+            # Wait until the search results are fully loaded
+            search_results = WebDriverWait(driver, delay).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "searchCardList"))
+            )
+
             # Start parsing out the result content
             # This is extremely fragile and required looking through the HTML for the class/div ids
-            search_results = driver.find_element_by_class_name("searchCardList")
+            # search_results = driver.find_element_by_class_name("searchCardList")
             result_list = search_results.find_elements_by_tag_name("li")
             for result in result_list:
                 # Get the listing link
@@ -138,13 +157,13 @@ def main(args=None):
                 results_dictionary[link] = {"Address": address, "Price": price}
             page += 1
 
-    except selenium.common.exceptions.WebDriverException as e:
-        print(f"{str(e)}")
+    except (selenium.common.exceptions.WebDriverException, TimeoutException) as e:
+        print(f"Error, reached end of results due to: {str(e)}")
 
     # Write to file using url hash as identifier
     # Also store the query in the output dictionary
     dynamic_url = url.split("for-rent/")
-    query_content = dynamic_url[1]
+    query_content = dynamic_url[1] + f"|{str(args.num_pages)}"
     hashed_query = hashlib.sha1(query_content.encode()).hexdigest()
     results_dictionary["query"] = query_content
     write_to_json(results_dictionary, f"results-{hashed_query}.json", args.check_diff)

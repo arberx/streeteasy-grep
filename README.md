@@ -8,6 +8,7 @@ Query [streeteasy.com](https://www.streeteasy.com) rentals and get the results i
 
 Using [selenium](https://selenium-python.readthedocs.io/), we're able to replicate non-bot behavior and therefore allowing us to parse the site.
 
+**Note: Even this method gets rate limited sometimes.**
 ### Installation
 
 First install the Firefox Gecko drivers locally for Firefox (the directions can be found [here](https://selenium-python.readthedocs.io/)), and have the Firefox browser installed. Any browser can be used, but requires changing the driver setup in `parser.py`.
@@ -31,8 +32,8 @@ Should now be able to run the command `streeteasy-grep --help` in a console.
 ### Usage
 
 ```
-usage: streeteasy-grep [-h] [--location LOCATION] [--price-lower-bound PRICE_LOWER_BOUND] [--price-upper-bound PRICE_UPPER_BOUND]
-                       [--num-bedrooms NUM_BEDROOMS] [--has-fee] [--check-diff]
+usage: streeteasy-grep [-h] [--location LOCATION] [--price-lower-bound PRICE_LOWER_BOUND] [--price-upper-bound PRICE_UPPER_BOUND] [--num-bedrooms NUM_BEDROOMS] [--has-fee]
+                       [--check-diff] [--num-pages NUM_PAGES]
 
 Parse streeteasy rental results for a given query with given parameters.
 
@@ -48,6 +49,8 @@ optional arguments:
                         Number of bedrooms (default: 1)
   --has-fee, -hf        Include apartments that have a signing fee. (default: False)
   --check-diff, -cd     Check diff between queries if the same query file has been created before (default: False)
+  --num-pages NUM_PAGES, -np NUM_PAGES
+                        Number of pages to iterate through. (default: -1)
   ```
 
 ### Sample Usage
