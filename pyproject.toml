@@ -8,6 +8,7 @@ authors = ["arberx <14798762+arberx@users.noreply.github.com>"]
 python = "^3.8"
 selenium = "^3.141.0"
 fake-useragent = "^0.1.11"
+selenium-stealth = "^1.0.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

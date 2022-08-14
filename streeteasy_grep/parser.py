@@ -14,6 +14,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, WebDriverException
+from fake_useragent import UserAgent
+from selenium_stealth import stealth
 
 from streeteasy_grep import config as cfg
 
@@ -116,8 +118,27 @@ def parse_args(args):
 def main(args=None):
     """ Setup and parse results"""
     opts = webdriver.ChromeOptions()
-    # opts.headless = True
+    user_agent = UserAgent()
+    # Don't show chrome window opening up
+    opts.headless = True
+    # Use a fake user agent
+    opts.add_argument(f'user-agent={user_agent}')
+    # Set some other args
+    opts.add_experimental_option("excludeSwitches", ["enable-automation"])
+    opts.add_experimental_option('useAutomationExtension', False)
+
     with webdriver.Chrome(options=opts) as driver:
+
+        # Use a stealth driver to try to avoid detection
+        stealth(driver,
+                languages=["en-US", "en"],
+                vendor="Google Inc.",
+                platform="Win32",
+                webgl_vendor="Intel Inc.",
+                renderer="Intel Iris OpenGL Engine",
+                fix_hairline=True,
+        )
+
         args = parse_args(args)
         url = construct_url(args)
 
@@ -125,7 +146,7 @@ def main(args=None):
             # Iterate through all pages of results, an exception will be thrown to end iteration.
             page = 1
             results_dictionary = {}
-            while page == args.num_pages:
+            while page <= args.num_pages:
                 print(f"Parsing url: [{url}?page={page}]")
                 delay = 3
                 time.sleep(1.0)

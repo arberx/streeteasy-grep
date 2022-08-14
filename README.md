@@ -56,7 +56,7 @@ optional arguments:
   --has-fee, -hf        Include apartments that have a signing fee. (default: False)
   --check-diff, -cd     Check diff between queries if the same query file has been created before (default: False)
   --num-pages NUM_PAGES, -np NUM_PAGES
-                        Number of pages to iterate through. (default: -1)
+                        Number of pages to iterate through. (default: 1)
   ```
 
 ### Sample Usage
@@ -64,10 +64,10 @@ optional arguments:
 By default running `streeteasy-grep` will generate the query parameters:
 
 ```
-ues/price:0-3000|beds:1|no_fee
+ues/price:0-3000|beds:1|no_fee|1
 ```
 
-Translating to quering for a 1 bedroom apartment on the Upper East Side, between $0-$3000/month and only including listing which are `no fee`.
+Translating to querying for a 1 bedroom apartment on the Upper East Side, between $0-$3000/month, only including listing which are `no fee`, and only looking at the first page of results.
 
 The results will be stored in a file called `results-{hash}.json` where `hash` is the hashed query string.
 
@@ -86,3 +86,7 @@ streeteasy-grep --check-diff
 ```
 
 Will diff the new query contents with an existing json file (in the directory the tool is invoked) and print to `stdout`.
+
+### Motivation
+
+The goal is you can setup a automated cron that runs the queries, then runs `--check-diff` and get immediate notifications if a new apartment is listed.
