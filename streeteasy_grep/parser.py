@@ -105,7 +105,7 @@ def parse_args(args):
     parser.add_argument(
         "--num-pages",
         "-np",
-        default=-1,
+        default=1,
         type=int,
         help="Number of pages to iterate through.",
     )
@@ -115,22 +115,20 @@ def parse_args(args):
 
 def main(args=None):
     """ Setup and parse results"""
-    # Requires gecko driver to be installed.
-    # https://github.com/mozilla/geckodriver/releases
-    opts = webdriver.FirefoxOptions()
-    opts.headless = True
-    with webdriver.Firefox(options=opts) as driver:
+    opts = webdriver.ChromeOptions()
+    # opts.headless = True
+    with webdriver.Chrome(options=opts) as driver:
         args = parse_args(args)
         url = construct_url(args)
 
         try:
-            # Iterate through all pages of results, and exception will be thrown to end iteration.
+            # Iterate through all pages of results, an exception will be thrown to end iteration.
             page = 1
             results_dictionary = {}
             while page == args.num_pages:
                 print(f"Parsing url: [{url}?page={page}]")
                 delay = 3
-                time.sleep(0.5)
+                time.sleep(1.0)
                 driver.get(f"{url}/?page={page}")
                 # Wait until the search results are fully loaded
                 search_results = WebDriverWait(driver, delay).until(
@@ -164,6 +162,7 @@ def main(args=None):
         query_content = url.split("for-rent/")[1] + f"|{str(args.num_pages)}"
         hashed_query = hashlib.sha1(query_content.encode()).hexdigest()
         results_dictionary["query"] = query_content
+
         write_to_json(
             results_dictionary, f"results-{hashed_query}.json", args.check_diff
         )

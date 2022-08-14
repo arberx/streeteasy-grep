@@ -1,6 +1,6 @@
 ## streeteasy-grep
 
-Query [streeteasy.com](https://www.streeteasy.com) rentals and get the results in json format. Tool also always you to diff between diffferent innvocations of the same query.
+Query [streeteasy.com](https://www.streeteasy.com) rentals and get the results in json format. Tool also always you to diff between different invocations of the same query.
 
 ### Motivation
 
@@ -11,7 +11,13 @@ Using [selenium](https://selenium-python.readthedocs.io/), we're able to replica
 **Note: Even this method gets rate limited sometimes.**
 ### Installation
 
-First install the Firefox Gecko drivers locally for Firefox (the directions can be found [here](https://selenium-python.readthedocs.io/)), and have the Firefox browser installed. Any browser can be used, but requires changing the driver setup in `parser.py`.
+First install the Chromium drivers locally (the directions can be found [here](https://selenium-python.readthedocs.io/)), and have a chromium based browser installed. Any browser can be used, but requires changing the driver setup in `parser.py`.
+
+Simple install on Debian based systems:
+
+```
+apt-get install -y chromium-chromedriver
+```
 
 It currently relies on [poetry](https://python-poetry.org/) for installation and dependency management. Follow the `poetry` docs for installation.
 
@@ -73,7 +79,7 @@ It'll contain a dictionary with the `links` keys, pointing to a object containin
 
 ### Checking diff
 
-The tool is useful in checking for new listings using a previous innvocation with **the same query**. Simply specifing:
+The tool is useful in checking for new listings using a previous invocation with **the same query**. Simply specifying:
 
 ```
 streeteasy-grep --check-diff
